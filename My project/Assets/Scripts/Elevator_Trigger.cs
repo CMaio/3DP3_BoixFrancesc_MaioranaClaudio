@@ -10,6 +10,7 @@ public class Elevator_Trigger : MonoBehaviour
     {
         if (other.gameObject.GetComponent<MarioPlayerController>() != null)
         {
+            Debug.Log("Entradp");
             attachMario(other.gameObject);
         }
     }
@@ -17,16 +18,23 @@ public class Elevator_Trigger : MonoBehaviour
     {
         if (other.gameObject.GetComponent<MarioPlayerController>() != null)
         {
+            Debug.Log("feura");
             dettachMario();
         }
     }
 
     private void Update()
     {
-        if (180.0f > Vector3.Angle(transform.up, Vector3.forward) && Vector3.Angle(transform.up, Vector3.forward) > maxAttachingAngle) dettachMario();
+        if (180.0f < Vector3.Angle(transform.up, Vector3.forward) && Vector3.Angle(transform.up, Vector3.forward) > maxAttachingAngle)
+        {
+            Debug.Log("feura2");
+            dettachMario();
+        }
+
     }
     private void attachMario(GameObject mario)
     {
+        Debug.Log("atachear");
         attachedMario = mario;
         mario.transform.parent = transform.parent.transform.parent;
     }
@@ -36,6 +44,7 @@ public class Elevator_Trigger : MonoBehaviour
         if (attachedMario != null)
         {
             attachedMario.transform.parent = null;
+            attachedMario = null;
         }
 
     }
