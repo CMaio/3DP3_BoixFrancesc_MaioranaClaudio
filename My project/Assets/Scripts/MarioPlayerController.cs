@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarioPlayerController : MonoBehaviour
+public class MarioPlayerController : MonoBehaviour,IRestartGame
 {
     [Header("Components")]
     [SerializeField] Animator animator;
@@ -22,9 +22,35 @@ public class MarioPlayerController : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private float runSpeed;
 
+    [SerializeField] private GameManager gm;
+
 
     private float verticalSpeed = -1.0f, movementSpeed;
     private bool onGround, falling;
+    private bool resetPos;
+
+
+    private Checkpoint_classe currentCheckpoint;
+    public void setCheckpoint(Checkpoint_classe checkpoint)
+    {
+        if(currentCheckpoint == null || currentCheckpoint.getIndex() < checkpoint.getIndex())
+        {
+            currentCheckpoint = checkpoint;
+
+        }
+    }
+
+    private void Start()
+    {
+        gm.addRestartListener(this);
+    }
+
+
+    private void OnDestroy()
+    {
+       gm.removeRestartListener(this);
+    }
+
 
     void Update()
     {
@@ -90,5 +116,18 @@ public class MarioPlayerController : MonoBehaviour
     {
         verticalSpeed = speedJump;
         animator.SetTrigger("jump");
+    }
+
+    void IRestartGame.RestartGame()
+    {
+        //restart health
+        resetPos = true;
+        Debug.Log("Restart mario");
+    }
+
+
+    void LateUpdate()
+    {
+
     }
 }
