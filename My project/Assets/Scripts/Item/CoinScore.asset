@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2ed18e998f99034888ad87f1acfb281, type: 3}
   m_Name: CoinScore
   m_EditorClassIdentifier: 
-  points: 10
+  points: 1

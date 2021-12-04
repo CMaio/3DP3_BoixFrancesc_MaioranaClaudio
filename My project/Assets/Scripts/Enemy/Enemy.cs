@@ -115,7 +115,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent(out HealthMario mario) && !waiting)
+        if (other.gameObject.TryGetComponent(out LifeManager mario) && !waiting)
         {
             mario.doDamage(damageDone);
             StartCoroutine(waitToAtack());

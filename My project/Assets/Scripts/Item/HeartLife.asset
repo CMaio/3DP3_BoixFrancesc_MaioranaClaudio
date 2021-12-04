@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2ed18e998f99034888ad87f1acfb281, type: 3}
-  m_Name: StarScore
+  m_Script: {fileID: 11500000, guid: 694178e9c690cda4982e3b893ab57f01, type: 3}
+  m_Name: HeartLife
   m_EditorClassIdentifier: 
-  points: 30
+  lifePoints: 1

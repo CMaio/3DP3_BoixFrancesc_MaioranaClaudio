@@ -30,7 +30,6 @@ public class Elevator_Trigger : MonoBehaviour
             float angle = Vector3.Angle(transform.up, Vector3.up);
             Debug.DrawRay(transform.position, Vector3.forward, Color.green);
             Debug.DrawRay(transform.position, transform.up, Color.red);
-            Debug.Log("feura2" + angle);
             dettachMario();
         }
 

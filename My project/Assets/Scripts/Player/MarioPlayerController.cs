@@ -77,8 +77,6 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
         if (movement.magnitude > 0)
         {
             movementSpeed = (movement.z * currentSpeed)/ movement.z;
-            Debug.Log("MOVE: " + movementSpeed);
-
             movement.Normalize();
             transform.forward = movement.normalized;
             movement *= currentSpeed * Time.deltaTime;
@@ -106,7 +104,7 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
 
         if (verticalSpeed < 0.0f) falling = true;
 
-
+        if (Input.GetMouseButtonDown(0)) doPunch();
 
         animator.SetBool("onGround", onGround);
         animator.SetBool("falling", falling);
@@ -132,5 +130,14 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
     public void Die()
     {
         GetComponent<CharacterController>().enabled = false;
+    }
+    void doPunch()
+    {
+        animator.SetTrigger("punch");
+    }
+
+    void LateUpdate()
+    {
+
     }
 }
