@@ -35,6 +35,8 @@ public class Enemy : MonoBehaviour
     [Header("Player components")]
     [SerializeField] GameObject player;
 
+    [Header("Particles")]
+    [SerializeField] ParticleSystem ps;
     
 
 
@@ -50,10 +52,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void setIdleState(){ anim.SetInteger("State", 0); agent.isStopped = true; currentState = STATE_IA.IDLE; }
-    void setPatrolState() { agent.isStopped = false; anim.SetInteger("State", 1); currentState = STATE_IA.PATROL; }
-    void setWaitingState() { anim.SetInteger("State", 3); agent.isStopped = true; currentState = STATE_IA.WAITING; }
-    void setAttackState() { anim.SetInteger("State", 2); currentState = STATE_IA.ATTACK; }
+    void setIdleState(){ anim.SetInteger("State", 0); agent.isStopped = true; currentState = STATE_IA.IDLE; ps.Stop(); }
+    void setPatrolState() { agent.isStopped = false; anim.SetInteger("State", 1); currentState = STATE_IA.PATROL; ps.startSpeed = 0.7f; ps.Play(); }
+    void setWaitingState() { anim.SetInteger("State", 3); agent.isStopped = true; currentState = STATE_IA.WAITING; ps.Stop(); }
+    void setAttackState() { anim.SetInteger("State", 2); currentState = STATE_IA.ATTACK; ps.startSpeed = 1.3f; ps.Play(); }
     public void setHitState() { currentState = STATE_IA.HIT; }
  
     void Update()
