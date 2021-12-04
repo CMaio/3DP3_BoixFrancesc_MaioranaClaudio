@@ -25,9 +25,12 @@ public class Elevator_Trigger : MonoBehaviour
 
     private void Update()
     {
-        if (180.0f < Vector3.Angle(transform.up, Vector3.forward) && Vector3.Angle(transform.up, Vector3.forward) > maxAttachingAngle)
+        if (180.0f > Vector3.Angle(transform.up, Vector3.forward) && Vector3.Angle(transform.up, Vector3.forward) > maxAttachingAngle)
         {
-            Debug.Log("feura2");
+            float angle = Vector3.Angle(transform.up, Vector3.up);
+            Debug.DrawRay(transform.position, Vector3.forward, Color.green);
+            Debug.DrawRay(transform.position, transform.up, Color.red);
+            Debug.Log("feura2" + angle);
             dettachMario();
         }
 
@@ -36,7 +39,7 @@ public class Elevator_Trigger : MonoBehaviour
     {
         Debug.Log("atachear");
         attachedMario = mario;
-        mario.transform.parent = transform.parent.transform.parent;
+        mario.transform.parent = transform;
     }
 
     private void dettachMario()

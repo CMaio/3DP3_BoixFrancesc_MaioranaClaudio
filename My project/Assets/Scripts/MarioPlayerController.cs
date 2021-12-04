@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MarioPlayerController : MonoBehaviour,IRestartGame
+public class MarioPlayerController : MonoBehaviour, IRestartGame
 {
     [Header("Components")]
     [SerializeField] Animator animator;
@@ -30,7 +30,7 @@ public class MarioPlayerController : MonoBehaviour,IRestartGame
     private bool resetPos;
 
 
-    private Checkpoint_classe currentCheckpoint;
+    [SerializeField] Checkpoint_classe currentCheckpoint;
     public void setCheckpoint(Checkpoint_classe checkpoint)
     {
         if(currentCheckpoint == null || currentCheckpoint.getIndex() < checkpoint.getIndex())
@@ -120,14 +120,16 @@ public class MarioPlayerController : MonoBehaviour,IRestartGame
 
     void IRestartGame.RestartGame()
     {
-        //restart health
-        resetPos = true;
-        Debug.Log("Restart mario");
+        Debug.Log("dierestart");
+        /*audioManager.Play("theme");*/
+        GetComponent<CharacterController>().enabled = false;
+        transform.position = currentCheckpoint.getCheckpointTransform().position;
+        transform.rotation = currentCheckpoint.getCheckpointTransform().rotation;
+        GetComponent<CharacterController>().enabled = true;
     }
 
-
-    void LateUpdate()
+    public void Die()
     {
-
+        GetComponent<CharacterController>().enabled = false;
     }
 }

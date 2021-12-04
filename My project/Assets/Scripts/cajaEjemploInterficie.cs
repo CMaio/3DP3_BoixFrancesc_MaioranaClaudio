@@ -20,4 +20,9 @@ public class cajaEjemploInterficie : MonoBehaviour, IRestartGame
         transform.position = initPos.position;
         transform.rotation = initPos.rotation;
     }
+
+    public void Die()
+    {
+        throw new System.NotImplementedException();
+    }
 }
