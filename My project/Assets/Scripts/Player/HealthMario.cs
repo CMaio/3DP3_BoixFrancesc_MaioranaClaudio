@@ -28,7 +28,7 @@ public class HealthMario : MonoBehaviour,IRestartGame
             doDamage(totalHealth/8);
         }
     }
-    private void doDamage(float damage)
+    public void doDamage(float damage)
     {
         currentHealth -= damage;
         if(currentHealth <= 0.0f)

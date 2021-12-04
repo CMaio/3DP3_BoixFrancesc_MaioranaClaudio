@@ -93,6 +93,7 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
         CollisionFlags cf = controller.Move(movement);
         if((cf & CollisionFlags.Below) != 0)
         {
+            
             onGround = true;
             falling = false;
             verticalSpeed = -1.0f;
