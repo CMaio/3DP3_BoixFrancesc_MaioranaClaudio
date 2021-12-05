@@ -188,6 +188,7 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
 
     public void Die()
     {
+        animator.SetTrigger("death");
         GetComponent<CharacterController>().enabled = false;
     }
     void doPunch()

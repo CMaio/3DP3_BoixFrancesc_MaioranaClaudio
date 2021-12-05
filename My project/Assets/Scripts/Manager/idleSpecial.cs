@@ -10,7 +10,6 @@ public class idleSpecial : StateMachineBehaviour
 
         override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-
         }
 
         override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -24,21 +23,22 @@ public class idleSpecial : StateMachineBehaviour
                 specialDone = true;
             }
             }
-        else if (stateInfo.normalizedTime > timeToSpecialIdle+5 && specialDone)
-        {
-            specialIdle -= Time.deltaTime;
-            animator.SetFloat("IdleSpecial", specialIdle);
-            if (specialIdle <= 0)
+            else if (stateInfo.normalizedTime > timeToSpecialIdle+5 && specialDone)
             {
-                specialDone = false;
-                timeToSpecialIdle += stateInfo.normalizedTime;
+                specialIdle -= Time.deltaTime;
+                animator.SetFloat("IdleSpecial", specialIdle);
+                if (specialIdle <= 0)
+                {
+                    specialDone = false;
+                    timeToSpecialIdle += stateInfo.normalizedTime;
+                }
             }
         }
-    }
 
         override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
         specialIdle = 0f;
+        specialDone = false;
         }
 
 }

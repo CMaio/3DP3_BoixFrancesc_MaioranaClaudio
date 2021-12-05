@@ -6,12 +6,14 @@ public class LifeManager : MonoBehaviour, ILifeManager, IRestartGame
 {
     [SerializeField] float currentHealth;
     [SerializeField] float totalHealth;
+    [SerializeField] Animator marioAnimator;
     [SerializeField] GameManager gm;
     public event LifeChanged lifeChangedDelegate;
     bool died;
     void Awake()
     {
         DependencyContainer.AddDependency<ILifeManager>(this);
+        marioAnimator = GetComponent<Animator>();
     }
     private void Start()
     {
@@ -30,6 +32,7 @@ public class LifeManager : MonoBehaviour, ILifeManager, IRestartGame
     }
     public void doDamage(float health)
     {
+        marioAnimator.SetTrigger("hit");
         this.currentHealth -= health;
         lifeChangedDelegate?.Invoke(this);
     }
