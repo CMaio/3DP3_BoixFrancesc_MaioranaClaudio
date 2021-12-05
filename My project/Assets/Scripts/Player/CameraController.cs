@@ -23,6 +23,11 @@ public class CameraController : MonoBehaviour,IRestartGame
 
 	[SerializeField] GameManager gm;
 
+	[Header("BetterCamera")]
+	float totalTime;
+	[SerializeField] float timeToMoveCamera = 5f;
+	Vector3 updatedMousePosition;
+
 	private void OnDestroy()
 	{
 		gm.removeRestartListener(this);
@@ -55,6 +60,14 @@ public class CameraController : MonoBehaviour,IRestartGame
 				m_CursorLocked = Cursor.lockState == CursorLockMode.Locked;
 			}
 #endif
+
+			totalTime += Time.deltaTime;
+			if (Input.mousePosition == updatedMousePosition)
+			{
+				if (totalTime >= timeToMoveCamera) Debug.Log("AQUI LA POS DE LA CAMERA");
+			}
+			else totalTime = 0;
+
 
 			float l_MouseAxisX = Input.GetAxis("Mouse X");
 			float l_MouseAxisY = Input.GetAxis("Mouse Y");
@@ -107,6 +120,8 @@ public class CameraController : MonoBehaviour,IRestartGame
 
 			transform.forward = l_Direction;
 			transform.position = l_DesiredPosition;
+
+			updatedMousePosition = Input.mousePosition;
 		}
 	
 	}
