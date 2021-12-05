@@ -64,7 +64,11 @@ public class CameraController : MonoBehaviour,IRestartGame
 			totalTime += Time.deltaTime;
 			if (Input.mousePosition == updatedMousePosition)
 			{
-				if (totalTime >= timeToMoveCamera) Debug.Log("AQUI LA POS DE LA CAMERA");
+				if (totalTime >= timeToMoveCamera)
+				{
+					transform.rotation = Quaternion.Lerp(transform.rotation,m_LookAt.rotation,0.1f);
+					Debug.Log("AQUI LA POS DE LA CAMERA");
+				}
 			}
 			else totalTime = 0;
 
