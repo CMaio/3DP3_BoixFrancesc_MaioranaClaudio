@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour,IRestartGame
 	public float m_MaxPitch=75.0f;
 	public KeyCode m_DebugLockAngleKeyCode=KeyCode.I;
 	public KeyCode m_DebugLockKeyCode=KeyCode.O;
+	public Transform resetPosition;
 
 	[SerializeField] private float m_MinDistanceToLookAt;
 	[SerializeField] private float m_MaxDistanceToLookAt;
@@ -20,6 +21,7 @@ public class CameraController : MonoBehaviour,IRestartGame
 	bool m_AngleLocked=false;
 	bool m_CursorLocked=true;
 	bool die = false;
+	bool reset = false;
 
 	[SerializeField] GameManager gm;
 
@@ -61,17 +63,7 @@ public class CameraController : MonoBehaviour,IRestartGame
 			}
 #endif
 
-			totalTime += Time.deltaTime;
-			if (Input.mousePosition == updatedMousePosition)
-			{
-				if (totalTime >= timeToMoveCamera)
-				{
-					transform.rotation = Quaternion.Lerp(transform.rotation,m_LookAt.rotation,0.1f);
 
-					Debug.Log("AQUI LA POS DE LA CAMERA");
-				}
-			}
-			else totalTime = 0;
 
 
 			float l_MouseAxisX = Input.GetAxis("Mouse X");
@@ -82,51 +74,76 @@ public class CameraController : MonoBehaviour,IRestartGame
 
 			Vector3 l_DesiredPosition = transform.position;
 
-			if (!m_AngleLocked && (l_MouseAxisX > 0.01f || l_MouseAxisX < -0.01f || l_MouseAxisY > 0.01f || l_MouseAxisY < -0.01f))
+			totalTime += Time.deltaTime;
+			if (Input.mousePosition == updatedMousePosition)
 			{
-				Vector3 l_EulerAngles = transform.eulerAngles;
-				float l_Yaw = (l_EulerAngles.y + 180.0f);
-				float l_Pitch = l_EulerAngles.x;
-
-				//Update Yaw and Pitch
-				l_Yaw += m_YawRotationalSpeed * l_MouseAxisX;
-				if (l_Pitch > 180.0f) l_Pitch -= 360.0f;
-				l_Pitch += m_PitchRotationalSpeed * (-l_MouseAxisY);
-				l_Pitch = Mathf.Clamp(l_Pitch, m_MinPitch, m_MaxPitch);
-
-				//Update DesiredPosition
-				l_Yaw *= Mathf.Deg2Rad;
-				l_Pitch *= Mathf.Deg2Rad;
-				l_DesiredPosition = m_LookAt.position
-											+ new Vector3(
-												Mathf.Sin(l_Yaw) * Mathf.Cos(l_Pitch) * l_Distance,
-												Mathf.Sin(l_Pitch) * l_Distance,
-												Mathf.Cos(l_Yaw) * Mathf.Cos(l_Pitch) * l_Distance);
-
-				l_Direction = m_LookAt.position - l_DesiredPosition;
+				if (totalTime >= timeToMoveCamera)
+				{
+					reset = true;
+					transform.rotation = Quaternion.Lerp(transform.rotation, resetPosition.rotation, 0.01f);
+					transform.position = Vector3.Lerp(transform.position, resetPosition.position, 0.01f);
+					Debug.Log("AQUI LA POS DE LA CAMERA");
+					
+				}
+			}
+			else { 
+				totalTime = 0;
+				reset = false;
 			}
 
-			l_Direction /= l_Distance;
+            if (!reset)
+            {
+				if (!m_AngleLocked && (l_MouseAxisX > 0.01f || l_MouseAxisX < -0.01f || l_MouseAxisY > 0.01f || l_MouseAxisY < -0.01f))
+				{
+					Vector3 l_EulerAngles = transform.eulerAngles;
+					float l_Yaw = (l_EulerAngles.y + 180.0f);
+					float l_Pitch = l_EulerAngles.x;
 
-			//Clamp between minDistance and maxDistance. Update desiredPosition.
-			if (l_Distance > m_MaxDistanceToLookAt || l_Distance < m_MinDistanceToLookAt)
-			{
-				l_Distance = Mathf.Clamp(l_Distance, m_MinDistanceToLookAt, m_MaxDistanceToLookAt);
-				l_DesiredPosition = m_LookAt.position - l_Direction * l_Distance;
+					//Update Yaw and Pitch
+					l_Yaw += m_YawRotationalSpeed * l_MouseAxisX;
+					if (l_Pitch > 180.0f) l_Pitch -= 360.0f;
+					l_Pitch += m_PitchRotationalSpeed * (-l_MouseAxisY);
+					l_Pitch = Mathf.Clamp(l_Pitch, m_MinPitch, m_MaxPitch);
+
+					//Update DesiredPosition
+					l_Yaw *= Mathf.Deg2Rad;
+					l_Pitch *= Mathf.Deg2Rad;
+					l_DesiredPosition = m_LookAt.position
+												+ new Vector3(
+													Mathf.Sin(l_Yaw) * Mathf.Cos(l_Pitch) * l_Distance,
+													Mathf.Sin(l_Pitch) * l_Distance,
+													Mathf.Cos(l_Yaw) * Mathf.Cos(l_Pitch) * l_Distance);
+
+					l_Direction = m_LookAt.position - l_DesiredPosition;
+				}
+
+				l_Direction /= l_Distance;
+
+
+
+				//Clamp between minDistance and maxDistance. Update desiredPosition.
+				if (l_Distance > m_MaxDistanceToLookAt || l_Distance < m_MinDistanceToLookAt)
+				{
+					l_Distance = Mathf.Clamp(l_Distance, m_MinDistanceToLookAt, m_MaxDistanceToLookAt);
+					l_DesiredPosition = m_LookAt.position - l_Direction * l_Distance;
+				}
+
+
+
+				//Bring camera closer if colliding with any object.
+				RaycastHit l_RaycastHit;
+				Ray l_Ray = new Ray(m_LookAt.position, -l_Direction);
+				if (Physics.Raycast(l_Ray, out l_RaycastHit, l_Distance, m_RaycastLayerMask.value))
+				{
+					l_DesiredPosition = l_RaycastHit.point + l_Direction * m_OffsetOnCollision;
+				}
+
+				transform.forward = l_Direction;
+				transform.position = l_DesiredPosition;
+
+				updatedMousePosition = Input.mousePosition;
 			}
 
-			//Bring camera closer if colliding with any object.
-			RaycastHit l_RaycastHit;
-			Ray l_Ray = new Ray(m_LookAt.position, -l_Direction);
-			if (Physics.Raycast(l_Ray, out l_RaycastHit, l_Distance, m_RaycastLayerMask.value))
-			{
-				l_DesiredPosition = l_RaycastHit.point + l_Direction * m_OffsetOnCollision;
-			}
-
-			transform.forward = l_Direction;
-			transform.position = l_DesiredPosition;
-
-			updatedMousePosition = Input.mousePosition;
 		}
 	
 	}
