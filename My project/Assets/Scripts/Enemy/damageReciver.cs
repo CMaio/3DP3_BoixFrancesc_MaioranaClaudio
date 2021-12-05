@@ -10,6 +10,7 @@ public class damageReciver : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("entra aqui");
         if (other.gameObject.TryGetComponent(out MarioPlayerController mario))
         {
             if (head) { em.doDamage(em.maxDamage); }

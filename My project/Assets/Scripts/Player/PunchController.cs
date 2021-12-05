@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PunchController : MonoBehaviour
 {
-    [SerializeField] private SphereCollider punchCollider;
-
+    [SerializeField] private BoxCollider punchCollider;
+    bool hit;
     public void setPunch(bool change)
     {
         punchCollider.enabled = change;
@@ -13,10 +13,12 @@ public class PunchController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.name);
         if (other.gameObject.TryGetComponent(out Enemy goomba))
         {
             goomba.setHitState();
             goomba.GetComponent<EnemyHealth>().doDamage(50);
         }
     }
+
 }

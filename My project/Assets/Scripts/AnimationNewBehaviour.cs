@@ -10,7 +10,7 @@ public class AnimationNewBehaviour : StateMachineBehaviour
 
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        punchController = animator.gameObject.GetComponent<PunchController>();
+        punchController = animator.gameObject.GetComponentInChildren<PunchController>();
         //punchController.setPunch(true);
     }
 

@@ -139,6 +139,16 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
 
         if (nJumps >= 3) nJumps = 0;
     }
+
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.collider.TryGetComponent(out EnemyHealth enemy) && verticalSpeed < 0 && !onGround) {
+            Debug.Log("do damage");
+            enemy.doDamage(1000); 
+        }
+    }
+
+
     private void wallJump()
     {
         animator.SetTrigger("wallJump");
