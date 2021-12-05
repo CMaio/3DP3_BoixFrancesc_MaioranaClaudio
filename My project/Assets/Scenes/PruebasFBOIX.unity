@@ -2006,6 +2006,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RestartPoint (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 644637434051532817, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 644637434051532818, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -2056,6 +2060,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 644637434051532819, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: index
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 644637434683747692, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
+      propertyPath: m_Layer
       value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 644637434683747693, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
@@ -3156,7 +3164,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1195057328}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.590988, y: 3.480559, z: 0.8037297}
@@ -3302,11 +3310,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3372144869839482346, guid: a91660e472bb1494987d77cb774cc4d5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 47.567226
+      value: 3.83
       objectReference: {fileID: 0}
     - target: {fileID: 3372144869839482346, guid: a91660e472bb1494987d77cb774cc4d5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.74086
+      value: 30.24
       objectReference: {fileID: 0}
     - target: {fileID: 3372144869839482346, guid: a91660e472bb1494987d77cb774cc4d5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3524,7 +3532,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1365405089}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 6.590988, y: 3.480559, z: 0.8037297}
@@ -3602,6 +3610,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RestartPoint (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 644637434051532817, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 644637434051532818, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -3653,6 +3665,10 @@ PrefabInstance:
     - target: {fileID: 644637434051532819, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: index
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 644637434683747692, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 644637434683747693, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: m_LocalPosition.x
@@ -3970,6 +3986,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RestartPoint
       objectReference: {fileID: 0}
+    - target: {fileID: 644637434051532817, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 644637434051532818, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -4017,6 +4037,10 @@ PrefabInstance:
     - target: {fileID: 644637434051532818, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 644637434683747692, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 644637434683747693, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: m_LocalPosition.x
@@ -4544,6 +4568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: RestartPoint (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 644637434051532817, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 644637434051532818, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -4595,6 +4623,10 @@ PrefabInstance:
     - target: {fileID: 644637434051532819, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: index
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 644637434683747692, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 644637434683747693, guid: ea17fbb71460591439001d4ca78e2152, type: 3}
       propertyPath: m_LocalPosition.x
@@ -13384,17 +13416,17 @@ MonoBehaviour:
   m_LookAt: {fileID: 1787752219}
   m_YawRotationalSpeed: 3
   m_PitchRotationalSpeed: 3
-  m_MinPitch: -45
-  m_MaxPitch: 75
+  m_MinPitch: -60
+  m_MaxPitch: 100
   m_DebugLockAngleKeyCode: 105
   m_DebugLockKeyCode: 111
-  resetPosition: {fileID: 1581035362}
-  m_MinDistanceToLookAt: 1
-  m_MaxDistanceToLookAt: 5
+  resetPosition: {fileID: 0}
+  m_MinDistanceToLookAt: 5
+  m_MaxDistanceToLookAt: 9
   m_RaycastLayerMask:
     serializedVersion: 2
     m_Bits: 55
-  m_OffsetOnCollision: 0.1
+  m_OffsetOnCollision: 1
   gm: {fileID: 5646349}
   timeToMoveCamera: 5
 --- !u!20 &7898584417800935656
