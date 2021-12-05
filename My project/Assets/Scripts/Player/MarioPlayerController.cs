@@ -143,7 +143,6 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
         if (hit.collider.TryGetComponent(out EnemyHealth enemy) && verticalSpeed < 0 && !onGround) {
-            Debug.Log("do damage");
             enemy.doDamage(1000); 
         }
     }

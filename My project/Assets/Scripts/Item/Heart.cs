@@ -20,7 +20,7 @@ public class Heart : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (!lifeManager.haveAllHealth() && life != null && !triggered)
+        if (!lifeManager.haveAllHealth() && life != null && !triggered && other.gameObject.GetComponent<MarioPlayerController>() != null)
         {
             audioS.Play();
             life.life();

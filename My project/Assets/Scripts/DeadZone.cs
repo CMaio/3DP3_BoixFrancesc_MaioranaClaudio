@@ -6,7 +6,6 @@ public class DeadZone : MonoBehaviour
 {
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("kill");
         if (other.gameObject.TryGetComponent(out LifeManager mario))
         {
             mario.doDamage(1000.0f);

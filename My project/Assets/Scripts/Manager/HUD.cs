@@ -43,7 +43,6 @@ public class HUD : MonoBehaviour, IRestartGame
 
     void IRestartGame.Die()
     {
-        Debug.Log("activa");
         die.SetActive(true);
     }
     void showHealthUI()

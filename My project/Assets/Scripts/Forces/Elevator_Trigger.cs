@@ -31,7 +31,6 @@ public class Elevator_Trigger : MonoBehaviour
     }
     private void attachMario(GameObject mario)
     {
-        Debug.Log("atachear");
         attachedMario = mario;
         mario.transform.parent = transform;
     }

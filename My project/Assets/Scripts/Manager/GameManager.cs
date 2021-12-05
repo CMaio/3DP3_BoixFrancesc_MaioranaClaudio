@@ -38,11 +38,9 @@ public class GameManager : MonoBehaviour
 
     public void playerDie()
     {
-        Debug.Log("entra");
         audioS.Stop();  
         audioS.clip = die;
         audioS.Play();
-        Debug.Log("sale");
         foreach (IRestartGame l in listeners)
         {
             l.Die();

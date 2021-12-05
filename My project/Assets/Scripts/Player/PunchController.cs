@@ -13,7 +13,6 @@ public class PunchController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.name);
         if (other.gameObject.TryGetComponent(out Enemy goomba))
         {
             goomba.setHitState();

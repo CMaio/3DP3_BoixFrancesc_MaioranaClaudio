@@ -156,13 +156,11 @@ public class Enemy : MonoBehaviour
 
     IEnumerator waitToAtack()
     {
-        Debug.Log("start counting");
         waiting = true;
         hitPlayer = true;
         yield return new WaitForSeconds(timeAfterHit);
         hitPlayer = false;
         waiting = false;
-        Debug.Log("stop counting");
     }
 }
 

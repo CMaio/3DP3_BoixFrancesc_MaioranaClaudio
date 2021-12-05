@@ -20,7 +20,6 @@ public class EnemyHealth : MonoBehaviour
 
     public void doDamage(float damage)
     {
-        Debug.Log(damage);
         currentHealth -= damage;
         if (currentHealth <= 0.0f)
         {

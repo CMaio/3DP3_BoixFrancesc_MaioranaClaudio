@@ -133,7 +133,6 @@ public class CameraController : MonoBehaviour,IRestartGame
 				Ray l_Ray = new Ray(m_LookAt.position, -l_Direction);
 				if (Physics.Raycast(l_Ray, out l_RaycastHit, l_Distance, m_RaycastLayerMask.value))
 				{
-					Debug.Log(l_RaycastHit.collider.gameObject.name);
 					l_DesiredPosition = l_RaycastHit.point + l_Direction * m_OffsetOnCollision;
 				}
 

@@ -14,7 +14,7 @@ public class Coin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (score != null && !triggered)
+        if (score != null && !triggered && other.gameObject.GetComponent<MarioPlayerController>() != null)
         {
             audioS.Play();
             score.score();
