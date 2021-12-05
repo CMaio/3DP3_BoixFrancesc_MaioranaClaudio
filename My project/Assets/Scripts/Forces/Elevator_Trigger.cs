@@ -10,7 +10,6 @@ public class Elevator_Trigger : MonoBehaviour
     {
         if (other.gameObject.GetComponent<MarioPlayerController>() != null)
         {
-            Debug.Log("Entradp");
             attachMario(other.gameObject);
         }
     }
@@ -18,7 +17,6 @@ public class Elevator_Trigger : MonoBehaviour
     {
         if (other.gameObject.GetComponent<MarioPlayerController>() != null)
         {
-            Debug.Log("feura");
             dettachMario();
         }
     }
@@ -27,9 +25,6 @@ public class Elevator_Trigger : MonoBehaviour
     {
         if (180.0f > Vector3.Angle(transform.up, Vector3.forward) && Vector3.Angle(transform.up, Vector3.forward) > maxAttachingAngle)
         {
-            float angle = Vector3.Angle(transform.up, Vector3.up);
-            Debug.DrawRay(transform.position, Vector3.forward, Color.green);
-            Debug.DrawRay(transform.position, transform.up, Color.red);
             dettachMario();
         }
 
