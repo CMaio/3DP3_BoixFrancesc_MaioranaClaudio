@@ -10,4 +10,13 @@ public class PunchController : MonoBehaviour
     {
         punchCollider.enabled = change;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.TryGetComponent(out Enemy goomba))
+        {
+            goomba.setHitState();
+            goomba.GetComponent<EnemyHealth>().doDamage(50);
+        }
+    }
 }

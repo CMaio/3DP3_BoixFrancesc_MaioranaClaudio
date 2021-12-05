@@ -78,12 +78,15 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
 
         if (movement.magnitude > 0)
         {
-            movementSpeed = (movement.z * currentSpeed)/ movement.z;
+            movementSpeed = (movement.z * currentSpeed) / movement.z;
             movement.Normalize();
             transform.forward = movement.normalized;
             movement *= currentSpeed * Time.deltaTime;
         }
-        else movementSpeed = 0.0f;
+        else
+        {
+            movementSpeed = 0.0f;
+        }
 
         if (Input.GetKeyDown(jumpKey))
         {
@@ -103,15 +106,7 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
         verticalSpeed += Physics.gravity.y * Time.deltaTime;
         movement.y += verticalSpeed * Time.deltaTime;
         if (wallJumpB) {
-            Quaternion from = new Quaternion(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z, 0);
-            Quaternion to = new Quaternion(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z, 0);
-            Debug.Log(from);
-            Debug.Log(to);
-
-            //Quaternion rotation = Quaternion.LookRotation(-transform.forward, Vector3.up);
-            //transform.rotation = Quaternion.Lerp(from, rotation, 0.1f);
             transform.forward = (transform.forward * -1) + new Vector3(0, 0, verticalSpeed * Time.deltaTime);
-            Debug.Log("Aqui entra");  
             wallJumpB = false;
 
         }

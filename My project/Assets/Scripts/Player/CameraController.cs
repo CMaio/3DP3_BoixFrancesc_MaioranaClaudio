@@ -82,8 +82,6 @@ public class CameraController : MonoBehaviour,IRestartGame
 					reset = true;
 					transform.rotation = Quaternion.Lerp(transform.rotation, resetPosition.rotation, 0.01f);
 					transform.position = Vector3.Lerp(transform.position, resetPosition.position, 0.01f);
-					Debug.Log("AQUI LA POS DE LA CAMERA");
-					
 				}
 			}
 			else { 

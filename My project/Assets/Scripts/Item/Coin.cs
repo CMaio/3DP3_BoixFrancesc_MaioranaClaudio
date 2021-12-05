@@ -4,12 +4,34 @@ using UnityEngine;
 public class Coin : MonoBehaviour
 {
     [SerializeField] Score score;
+    [SerializeField] AudioSource audioS;
+    bool triggered;
+    [SerializeField] GameObject particles;
+
+
+
+
+
     private void OnTriggerEnter(Collider other)
     {
-        if (score != null)
+        if (score != null && !triggered)
         {
+            audioS.Play();
             score.score();
+            triggered = true;
+            GetComponent<MeshRenderer>().enabled = false;
+            Destroy(particles);
+            
+
         }
-        Destroy(gameObject);
+
+    }
+
+    private void Update()
+    {
+        if (!audioS.isPlaying && triggered)
+        {
+            Destroy(gameObject);
+        }
     }
 }

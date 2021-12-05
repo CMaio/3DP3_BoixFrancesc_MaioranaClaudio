@@ -6,9 +6,15 @@ public class GameManager : MonoBehaviour
 {
     private List<IRestartGame> listeners = new List<IRestartGame>();
     bool died = false;
+    [SerializeField] AudioSource audioS;
+    [SerializeField] AudioClip play;
+    [SerializeField] AudioClip die;
+
     public void RestartGame()
     {
-        foreach(IRestartGame l in listeners)
+        audioS.clip = play;
+        audioS.Play();
+        foreach (IRestartGame l in listeners)
         {
             l.RestartGame();
         }
@@ -32,7 +38,11 @@ public class GameManager : MonoBehaviour
 
     public void playerDie()
     {
-        
+        Debug.Log("entra");
+        audioS.Stop();  
+        audioS.clip = die;
+        audioS.Play();
+        Debug.Log("sale");
         foreach (IRestartGame l in listeners)
         {
             l.Die();

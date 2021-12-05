@@ -8,6 +8,7 @@ public class LifeManager : MonoBehaviour, ILifeManager, IRestartGame
     [SerializeField] float totalHealth;
     [SerializeField] GameManager gm;
     public event LifeChanged lifeChangedDelegate;
+    bool died;
     void Awake()
     {
         DependencyContainer.AddDependency<ILifeManager>(this);
@@ -40,11 +41,17 @@ public class LifeManager : MonoBehaviour, ILifeManager, IRestartGame
         {
             doDamage(1);
         }
+        if(currentHealth <= 0.0f && !died)
+        {
+            gm.playerDie();
+            died = true;
+        }
     }
     public void RestartGame()
     {
         currentHealth = totalHealth;
         lifeChangedDelegate?.Invoke(this);
+        died = false;
     }
     public void Die() { }
 }
