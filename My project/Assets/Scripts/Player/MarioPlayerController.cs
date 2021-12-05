@@ -27,7 +27,7 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
 
 
     private float verticalSpeed = -1.0f, movementSpeed;
-    private bool onGround, falling;
+    private bool onGround, falling, wallJumpB,walljumped;
     private int nJumps = 0;
     Coroutine currentJumpCoroutine = null;
 
@@ -102,12 +102,29 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
         
         verticalSpeed += Physics.gravity.y * Time.deltaTime;
         movement.y += verticalSpeed * Time.deltaTime;
+        if (wallJumpB) {
+            Quaternion from = new Quaternion(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z, 0);
+            Quaternion to = new Quaternion(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y + 180, transform.rotation.eulerAngles.z, 0);
+            Debug.Log(from);
+            Debug.Log(to);
+
+            //Quaternion rotation = Quaternion.LookRotation(-transform.forward, Vector3.up);
+            //transform.rotation = Quaternion.Lerp(from, rotation, 0.1f);
+            transform.forward = (transform.forward * -1) + new Vector3(0, 0, verticalSpeed * Time.deltaTime);
+            Debug.Log("Aqui entra");  
+            wallJumpB = false;
+        }
+
+
+
 
         CollisionFlags cf = controller.Move(movement);
         if((cf & CollisionFlags.Below) != 0)
         {
             onGround = true;
             falling = false;
+            wallJumpB = false;
+            walljumped = false;
             verticalSpeed = -1.0f;
         }
         else
@@ -129,6 +146,8 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
     private void wallJump()
     {
         animator.SetTrigger("wallJump");
+        verticalSpeed = speedJump + nJumps;
+        wallJumpB = true;
     }
     private void jump()
     {

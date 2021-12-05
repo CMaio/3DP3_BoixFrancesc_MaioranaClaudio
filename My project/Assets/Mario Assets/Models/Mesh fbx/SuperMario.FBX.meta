@@ -4612,7 +4612,7 @@ ModelImporter:
         intParameter: 0
         messageOptions: 0
       - time: 0.14566678
-        functionName: 
+        functionName: PunchSound2
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
