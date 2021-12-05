@@ -27,7 +27,7 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
 
 
     private float verticalSpeed = -1.0f, movementSpeed;
-    private bool onGround, falling, wallJumpB,walljumped;
+    private bool onGround, falling, wallJumpB;
     private int nJumps = 0;
     Coroutine currentJumpCoroutine = null;
 
@@ -113,6 +113,7 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
             transform.forward = (transform.forward * -1) + new Vector3(0, 0, verticalSpeed * Time.deltaTime);
             Debug.Log("Aqui entra");  
             wallJumpB = false;
+
         }
 
 
@@ -124,7 +125,7 @@ public class MarioPlayerController : MonoBehaviour, IRestartGame
             onGround = true;
             falling = false;
             wallJumpB = false;
-            walljumped = false;
+           
             verticalSpeed = -1.0f;
         }
         else

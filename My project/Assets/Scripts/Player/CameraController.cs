@@ -67,6 +67,7 @@ public class CameraController : MonoBehaviour,IRestartGame
 				if (totalTime >= timeToMoveCamera)
 				{
 					transform.rotation = Quaternion.Lerp(transform.rotation,m_LookAt.rotation,0.1f);
+
 					Debug.Log("AQUI LA POS DE LA CAMERA");
 				}
 			}
